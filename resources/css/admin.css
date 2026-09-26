@@ -1,0 +1,1080 @@
+/* App-specific additions on top of public/adminator/css/style.css (no Tailwind here). */
+
+.logout-btn {
+    appearance: none;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.dd-menu-item.logout-btn {
+    padding: 10px 18px;
+    text-align: left;
+    width: 100%;
+}
+
+.workspace .logout-btn {
+    border-radius: 6px;
+    color: var(--t-light);
+    display: grid;
+    padding: 6px;
+    place-items: center;
+}
+
+.workspace .logout-btn:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+/* Server-side DataTables (resources/js/datatable.js) on Adminator's .data-table markup. */
+
+.datatable {
+    position: relative;
+}
+
+.datatable-scroll {
+    margin: 0 -22px;
+    overflow-x: auto;
+    padding: 0 22px;
+}
+
+.datatable .data-table {
+    min-width: 640px;
+}
+
+.datatable .data-toolbar .input-icon {
+    max-width: 320px;
+}
+
+.datatable .data-toolbar-right .select {
+    font-size: 12px;
+    padding: 7px 28px 7px 10px;
+    width: auto;
+}
+
+.datatable .data-foot {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.datatable .data-foot-info strong {
+    color: var(--t-base);
+}
+
+.datatable .data-foot-info .select {
+    font-size: 12px;
+    padding: 6px 28px 6px 10px;
+    width: auto;
+}
+
+.datatable .pager {
+    display: flex;
+    gap: 4px;
+}
+
+.data-table thead th.dt-orderable-asc,
+.data-table thead th.dt-orderable-desc {
+    cursor: pointer;
+    user-select: none;
+}
+
+.data-table thead th .dt-column-header {
+    align-items: center;
+    display: inline-flex;
+    gap: 6px;
+}
+
+.data-table thead th.text-end .dt-column-header {
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.data-table thead th .dt-column-order {
+    opacity: 0.35;
+}
+
+.data-table thead th:not(.dt-orderable-asc):not(.dt-orderable-desc) .dt-column-order {
+    display: none;
+}
+
+.data-table thead th .dt-column-order::after {
+    content: '↕';
+    font-family: system-ui, sans-serif;
+}
+
+.data-table thead th.dt-ordering-asc .dt-column-order,
+.data-table thead th.dt-ordering-desc .dt-column-order {
+    color: var(--primary);
+    opacity: 1;
+}
+
+.data-table thead th.dt-ordering-asc .dt-column-order::after {
+    content: '↑';
+}
+
+.data-table thead th.dt-ordering-desc .dt-column-order::after {
+    content: '↓';
+}
+
+.data-table td.dt-empty {
+    color: var(--t-muted);
+    padding: 32px 14px;
+    text-align: center;
+}
+
+.datatable div.dt-processing {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    color: var(--t-muted);
+    font-size: 12px;
+    left: 50%;
+    padding: 8px 16px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.datatable div.dt-processing > div:last-child {
+    display: none;
+}
+
+.data-cell-actions form {
+    display: contents;
+}
+
+.data-cell-actions .btn--icon {
+    cursor: pointer;
+}
+
+.data-cell-actions .btn--icon.is-danger:hover {
+    background: var(--danger-soft);
+    color: var(--danger);
+}
+
+.data-table .text-end {
+    text-align: right;
+}
+
+.data-table td.text-end .data-cell-actions {
+    justify-content: flex-end;
+}
+
+/* Admin dashboard. */
+
+a.kpi-pill {
+    text-decoration: none;
+}
+
+/* Yearly flow checklist (partials/year-progress). */
+
+.year-steps {
+    display: grid;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.year-step {
+    align-items: start;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 26px 1fr;
+}
+
+.year-step-mark {
+    background: var(--bg-muted);
+    border-radius: 50%;
+    color: var(--t-muted);
+    display: grid;
+    font-size: 12px;
+    font-weight: 600;
+    height: 26px;
+    place-items: center;
+    width: 26px;
+}
+
+.year-step.is-done .year-step-mark {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.year-step-title {
+    align-items: center;
+    color: var(--t-base);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 8px;
+}
+
+.year-step-title a {
+    color: inherit;
+}
+
+/* Subject form: class checkbox grid. */
+
+.class-checks {
+    display: grid;
+    gap: 10px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+/* Attendance recap. */
+
+.recap-filters {
+    align-items: end;
+    display: grid;
+    gap: 14px 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.recap-table .num {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.recap-table th.num {
+    padding-left: 12px;
+}
+
+/* Guru attendance input. */
+
+.status-radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+}
+
+.attendance-table td {
+    vertical-align: middle;
+}
+
+.attendance-table .input {
+    min-width: 160px;
+}
+
+.attendance-table td:first-child {
+    padding-left: 12px;
+}
+
+.attendance-table tr.is-recorded td:first-child {
+    box-shadow: inset 3px 0 0 var(--success);
+}
+
+/* Modal forms (components/modal-form, resources/js/modal.js). Adminator's .modal-* styles, as a real overlay.
+   Not a native <dialog>: its top layer would cover SweetAlert confirmations opened from the modal. */
+
+[hidden] {
+    display: none !important;
+}
+
+body.has-modal-open {
+    overflow: hidden;
+}
+
+.modal-backdrop {
+    align-items: flex-start;
+    animation: modal-fade 0.15s ease-out both;
+    background: rgba(15, 23, 42, 0.45);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 8vh 16px 32px;
+    position: fixed;
+    z-index: 1000;
+}
+
+.modal-backdrop .modal-panel {
+    animation: modal-rise 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    max-width: 560px;
+    /* Adminator's .modal-demo clips its children; a Select2 dropdown rendered inside the modal would be cut off. */
+    overflow: visible;
+    position: relative;
+    width: 100%;
+}
+
+.modal-backdrop .modal-head {
+    border-radius: 14px 14px 0 0;
+}
+
+.modal-backdrop .modal-foot {
+    border-radius: 0 0 14px 14px;
+}
+
+.modal-backdrop .modal-panel.modal-lg {
+    max-width: 820px;
+}
+
+.modal-backdrop .modal-head .mail-tool {
+    cursor: pointer;
+}
+
+.modal-backdrop .modal-body {
+    color: var(--t-base);
+}
+
+.modal-backdrop .modal-body > .alert {
+    margin-bottom: 14px;
+}
+
+.modal-loading {
+    align-items: center;
+    color: var(--t-muted);
+    display: flex;
+    gap: 10px;
+    padding: 24px 0;
+}
+
+.modal-note {
+    color: var(--t-muted);
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+.btn.is-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+@keyframes modal-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modal-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+    .modal-backdrop {
+        padding: 3vh 10px 24px;
+    }
+
+    .modal-backdrop .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-backdrop .modal-head,
+    .modal-backdrop .modal-body,
+    .modal-backdrop .modal-foot {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .modal-backdrop .modal-foot .btn {
+        flex: 1;
+    }
+
+    /* A dropdown that would open past the bottom edge stays reachable: the modal scrolls with it. */
+    html .select2-container--open .select2-dropdown {
+        max-width: calc(100vw - 28px);
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   UI plugins, themed with Adminator's tokens (single light theme).
+   Each plugin's own base CSS is imported by its lazy-loaded module (resources/js/plugins/*).
+   --------------------------------------------------------------------------------------------------------------- */
+
+.sr-only {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Loading overlay (plugins/loading.js). */
+
+.loading-overlay {
+    align-items: center;
+    animation: modal-fade 0.15s ease-out both;
+    background: rgba(15, 23, 42, 0.35);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    position: fixed;
+    z-index: 1100;
+}
+
+.loading-box {
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    color: var(--t-base);
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 12px;
+    max-width: calc(100vw - 32px);
+    padding: 16px 22px;
+}
+
+/* Busy state inside a modal while it saves. */
+
+.modal-backdrop .modal-panel {
+    position: relative;
+}
+
+.modal-busy {
+    align-items: center;
+    background: color-mix(in srgb, var(--bg-card) 78%, transparent);
+    border-radius: 14px;
+    color: var(--t-base);
+    display: flex;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 10px;
+    inset: 0;
+    justify-content: center;
+    position: absolute;
+    z-index: 5;
+}
+
+/* DataTables "processing": a translucent layer over the table instead of a small box. */
+
+.datatable,
+.datatable .dt-container {
+    position: relative;
+}
+
+.datatable div.dt-processing {
+    align-items: center;
+    background: color-mix(in srgb, var(--bg-card) 70%, transparent);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    font-size: 12.5px;
+    font-weight: 600;
+    gap: 10px;
+    inset: 0;
+    justify-content: center;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* DataTables Buttons: Excel / PDF / Cetak (plugins/export-buttons.js). */
+
+.dt-export-buttons .dt-export-btn > span {
+    align-items: center;
+    display: inline-flex;
+    gap: 6px;
+}
+
+.data-toolbar-left {
+    flex-wrap: wrap;
+}
+
+.dt-export-buttons {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.dt-export-buttons .dt-export-btn {
+    cursor: pointer;
+    font-size: 12px;
+    padding: 7px 11px;
+}
+
+.dt-export-buttons .dt-export-btn svg {
+    fill: none;
+    height: 14px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+    width: 14px;
+}
+
+.dt-export-buttons .dt-export-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.dt-export-buttons .dt-export-excelHtml5:hover {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.dt-export-buttons .dt-export-pdfHtml5:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.card-head-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Plugin themes are prefixed with "html": each plugin's own CSS is loaded lazily, after this file, and would otherwise win on equal specificity. */
+
+/* Select2 (plugins/select2.js), styled like Adminator's .select. */
+
+html .select2-container {
+    font-size: 13px;
+}
+
+html .select2-container--default .select2-selection--single {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    height: 38px;
+    outline: 0;
+    transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--t-base);
+    line-height: 36px;
+    padding-left: 12px;
+    padding-right: 30px;
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: var(--t-light);
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px;
+    right: 6px;
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-color: var(--t-light) transparent transparent;
+}
+
+html .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: transparent transparent var(--t-light);
+}
+
+html .select2-container--default.select2-container--focus .select2-selection--single,
+html .select2-container--default.select2-container--open .select2-selection--single {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+html .select2-container--default.select2-container--disabled .select2-selection--single {
+    background: var(--bg-muted);
+    cursor: not-allowed;
+}
+
+html .select.is-invalid + .select2-container .select2-selection--single {
+    border-color: var(--danger);
+}
+
+html .select2-dropdown {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    color: var(--t-base);
+    overflow: hidden;
+    z-index: 1051;
+}
+
+html .select2-container--open .select2-dropdown--below {
+    margin-top: 4px;
+}
+
+html .select2-container--open .select2-dropdown--above {
+    margin-top: -4px;
+}
+
+html .select2-container--default .select2-search--dropdown {
+    padding: 8px;
+}
+
+html .select2-container--default .select2-search--dropdown .select2-search__field {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--t-base);
+    outline: 0;
+    padding: 7px 10px;
+}
+
+html .select2-container--default .select2-search--dropdown .select2-search__field:focus {
+    border-color: var(--primary);
+}
+
+html .select2-container--default .select2-results > .select2-results__options {
+    max-height: 260px;
+}
+
+html .select2-results__option {
+    padding: 8px 12px;
+}
+
+html .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    background: var(--primary);
+    color: #fff;
+}
+
+html .select2-container--default .select2-results__option--selected {
+    background: var(--primary-soft);
+    color: var(--t-base);
+}
+
+html .select2-container--default .select2-results__option--disabled {
+    color: var(--t-light);
+}
+
+/* Flatpickr (plugins/datepicker.js). */
+
+html .flatpickr-calendar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    font-family: inherit;
+}
+
+html .flatpickr-calendar.arrowTop::before,
+html .flatpickr-calendar.arrowBottom::before {
+    border-bottom-color: var(--border);
+}
+
+html .flatpickr-calendar.arrowTop::after {
+    border-bottom-color: var(--bg-card);
+}
+
+html .flatpickr-calendar.arrowBottom::after {
+    border-top-color: var(--bg-card);
+}
+
+html .flatpickr-months .flatpickr-month,
+html .flatpickr-current-month .flatpickr-monthDropdown-months,
+html .flatpickr-current-month input.cur-year,
+html span.flatpickr-weekday {
+    background: transparent;
+    color: var(--t-base);
+    fill: var(--t-base);
+}
+
+html .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+    background: var(--bg-card);
+}
+
+html .flatpickr-months .flatpickr-prev-month svg,
+html .flatpickr-months .flatpickr-next-month svg {
+    fill: var(--t-muted);
+}
+
+html .flatpickr-months .flatpickr-prev-month:hover svg,
+html .flatpickr-months .flatpickr-next-month:hover svg {
+    fill: var(--primary);
+}
+
+html span.flatpickr-weekday {
+    color: var(--t-light);
+    font-weight: 600;
+}
+
+html .flatpickr-day {
+    border-radius: 8px;
+    color: var(--t-base);
+}
+
+html .flatpickr-day:hover,
+html .flatpickr-day:focus {
+    background: var(--bg-hover);
+    border-color: var(--bg-hover);
+}
+
+html .flatpickr-day.today {
+    border-color: var(--primary);
+}
+
+html .flatpickr-day.selected,
+html .flatpickr-day.selected:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+html .flatpickr-day.flatpickr-disabled,
+html .flatpickr-day.flatpickr-disabled:hover,
+html .flatpickr-day.prevMonthDay,
+html .flatpickr-day.nextMonthDay {
+    color: var(--t-light);
+    opacity: 0.55;
+}
+
+html .datepicker-input {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'><rect x='3' y='4' width='18' height='18' rx='2'/><path d='M16 2v4M8 2v4M3 10h18'/></svg>");
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding-right: 32px;
+}
+
+/* Toastr (plugins/toastr.js). */
+
+html #toast-container > div {
+    background-image: none;
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    font-size: 13px;
+    opacity: 1;
+    padding: 14px 16px 14px 48px;
+    width: 340px;
+}
+
+html #toast-container > div:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+html #toast-container > div::before {
+    font-size: 16px;
+    font-weight: 700;
+    left: 18px;
+    position: absolute;
+    top: 13px;
+}
+
+html #toast-container > .toast-success { background-color: var(--success); }
+
+html #toast-container > .toast-success::before { content: '✓'; }
+
+html #toast-container > .toast-error { background-color: var(--danger); }
+
+html #toast-container > .toast-error::before { content: '!'; }
+
+html #toast-container > .toast-warning { background-color: var(--orange); }
+
+html #toast-container > .toast-warning::before { content: '!'; }
+
+html #toast-container > .toast-info { background-color: var(--info); }
+
+html #toast-container > .toast-info::before { content: 'i'; }
+
+html #toast-container .toast-progress {
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0.35;
+}
+
+html #toast-container.toast-top-right {
+    right: 16px;
+    top: 72px;
+}
+/* Dashboard charts (plugins/charts.js). */
+
+.chart-box {
+    height: 280px;
+    position: relative;
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__clear {
+    color: var(--t-light);
+    font-size: 16px;
+    height: 36px;
+    margin-right: 22px;
+}
+
+html .select2-container--default .select2-selection--single .select2-selection__clear:hover {
+    color: var(--danger);
+}
+
+/* Promotion progress table: the class currently being processed. */
+
+.table tr.is-selected-row {
+    background: var(--primary-soft);
+}
+
+.table tr.is-selected-row td:first-child {
+    box-shadow: inset 3px 0 0 var(--primary);
+}
+
+/* Rows an Excel import cannot process. */
+
+.table tr.is-invalid-row td {
+    background: var(--danger-soft);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Guru attendance sheet: status pills, live counters and a filter for long classes.
+   --------------------------------------------------------------------------------------------------------------- */
+
+.attendance-counters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.attendance-counter {
+    align-items: center;
+    background: var(--bg-muted);
+    border-radius: 999px;
+    color: var(--t-muted);
+    display: inline-flex;
+    font-size: 12px;
+    gap: 6px;
+    padding: 5px 12px;
+}
+
+.attendance-counter strong {
+    color: var(--t-base);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.attendance-counter[data-status='hadir'] { background: var(--success-soft); color: var(--success); }
+.attendance-counter[data-status='izin'] { background: var(--info-soft); color: var(--info); }
+.attendance-counter[data-status='sakit'] { background: var(--orange-soft); color: var(--orange); }
+.attendance-counter[data-status='alpha'] { background: var(--danger-soft); color: var(--danger); }
+.attendance-counter[data-status] strong { color: inherit; }
+
+.attendance-counter.is-empty.is-done {
+    background: var(--success-soft);
+    color: var(--success);
+}
+
+.attendance-toolbar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.attendance-search {
+    max-width: 320px;
+    width: 100%;
+}
+
+/* Keep the header visible while scrolling a long class. */
+
+.attendance-scroll {
+    max-height: min(62vh, 640px);
+    overflow-y: auto;
+}
+
+.attendance-table thead th {
+    background: var(--bg-card);
+    box-shadow: inset 0 -1px 0 var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.attendance-table tr[data-status] td:first-child {
+    box-shadow: inset 3px 0 0 transparent;
+}
+
+.attendance-table tr[data-status='hadir'] td:first-child { box-shadow: inset 3px 0 0 var(--success); }
+.attendance-table tr[data-status='izin'] td:first-child { box-shadow: inset 3px 0 0 var(--info); }
+.attendance-table tr[data-status='sakit'] td:first-child { box-shadow: inset 3px 0 0 var(--orange); }
+.attendance-table tr[data-status='alpha'] td:first-child { box-shadow: inset 3px 0 0 var(--danger); }
+
+.attendance-empty {
+    margin: 0;
+    padding: 18px 12px;
+}
+
+.attendance-actions {
+    border-top: 1px solid var(--border-soft);
+    margin-top: 0;
+    padding-top: 14px;
+}
+
+.attendance-row-save {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+/* Status choice: one coloured pill per status, easier to hit and to read than plain radios. */
+
+.status-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.status-pill {
+    cursor: pointer;
+    position: relative;
+}
+
+.status-pill input {
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.status-pill span {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--t-muted);
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    user-select: none;
+}
+
+.status-pill:hover span {
+    border-color: var(--t-light);
+}
+
+.status-pill input:focus-visible + span {
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.status-pill[data-status='hadir'] input:checked + span { background: var(--success); border-color: var(--success); color: #fff; }
+.status-pill[data-status='izin'] input:checked + span { background: var(--info); border-color: var(--info); color: #fff; }
+.status-pill[data-status='sakit'] input:checked + span { background: var(--orange); border-color: var(--orange); color: #fff; }
+.status-pill[data-status='alpha'] input:checked + span { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Mobile. The Adminator shell already turns the sidebar into a drawer (hamburger in the topbar) below 900px;
+   these rules cover the parts this app adds: toolbars, filters, tables, the attendance sheet and the charts.
+   Wide tables scroll horizontally inside their own container instead of squeezing the columns.
+   --------------------------------------------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .data-table {
+        min-width: 620px;
+    }
+
+    .recap-table {
+        min-width: 720px;
+    }
+
+    .attendance-table {
+        min-width: 760px;
+    }
+
+    .chart-box {
+        height: 240px;
+    }
+}
+
+@media (max-width: 720px) {
+    .hero {
+        flex-wrap: wrap;
+    }
+
+    .hero-actions {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .card-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .card-head-actions {
+        width: 100%;
+    }
+
+    .recap-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .recap-filter-actions .btn {
+        width: 100%;
+    }
+
+    .data-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .data-toolbar-left,
+    .data-toolbar-right {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .data-toolbar-left .input-icon,
+    .data-toolbar-right .select {
+        width: 100%;
+    }
+
+    html .data-toolbar-right .select2-container {
+        width: 100% !important;
+    }
+
+    .dt-export-buttons {
+        width: 100%;
+    }
+
+    .dt-export-buttons .dt-export-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .data-foot {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .attendance-toolbar {
+        flex-direction: column;
+    }
+
+    .attendance-search {
+        max-width: none;
+    }
+
+    .attendance-toolbar .btn {
+        width: 100%;
+    }
+
+    .attendance-scroll {
+        max-height: none;
+    }
+
+    .attendance-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .attendance-actions .btn {
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .form-actions .btn {
+        flex: 1;
+    }
+
+    .year-step {
+        grid-template-columns: 22px 1fr;
+    }
+}
