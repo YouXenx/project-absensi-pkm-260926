@@ -33,7 +33,7 @@
             <th data-data="subjects_count">Mapel</th>
             <th data-data="promotions_count">Kenaikan</th>
             <th data-data="attendances_count">Absensi</th>
-            <th data-data="actions" data-orderable="false" data-class="text-end" style="width:60px"></th>
+            <th data-data="actions" data-orderable="false" data-class="text-end" class="text-end">Aksi</th>
         </x-data-table>
     </section>
 </div>

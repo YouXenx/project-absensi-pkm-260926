@@ -1,7 +1,8 @@
-import '../css/admin.css';
 import { initDataTables } from './datatable';
 import { Swal, alert, bindConfirmations, confirm, showFlashMessages, toast } from './flash';
 import { bindModalForms } from './modal';
+import { bindPasswordToggles } from './password-toggle';
+import { bindShell } from './shell';
 import { bindLoadingForms, hideLoading, showLoading } from './plugins/loading';
 
 // Expose the helpers for inline Blade scripts, e.g. window.flash.toast('success', 'Tersimpan').
@@ -78,6 +79,10 @@ function loadPagePlugins() {
         import('./plugins/export-buttons').then(({ initStaticExportTables }) => initStaticExportTables());
     }
 
+    if (document.querySelector('[data-slides]')) {
+        import('./login-slides').then(({ initSlides }) => initSlides());
+    }
+
     if (document.querySelector('[data-attendance-form]')) {
         import('./attendance').then(({ initAttendanceForm }) => initAttendanceForm());
     }
@@ -95,9 +100,11 @@ function boot() {
         // Ignore: private mode or blocked storage.
     }
 
+    bindShell();
     showFlashMessages();
     initDataTables();
     bindModalForms();
+    bindPasswordToggles();
     bindApplyAll();
     bindMarkAll();
     bindAutoSubmit();

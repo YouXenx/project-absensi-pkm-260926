@@ -18,10 +18,10 @@
 </section>
 
 <section class="card">
-    <x-data-table :url="route('admin.kelas.data')" search-placeholder="Cari nama kelas…">
+    <x-data-table :url="route('admin.kelas.data')" search-placeholder="Cari nama kelas…" export-title="Data Kelas">
         <th data-data="class_name">Nama Kelas</th>
         <th data-data="students_count">Jumlah Siswa</th>
-        <th data-data="actions" data-orderable="false" data-class="text-end" style="width:90px"></th>
+        <th data-data="actions" data-orderable="false" data-class="text-end" class="text-end">Aksi</th>
     </x-data-table>
 </section>
 

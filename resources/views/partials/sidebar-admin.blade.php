@@ -54,7 +54,7 @@
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/>
     </x-sidebar.link>
     <x-sidebar.link route="admin.laporan.mapel" label="Rekap per Mapel" active="admin.laporan.mapel">
-        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+        <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>
     </x-sidebar.link>
 
     <x-sidebar.link route="admin.akun.edit" label="Pengaturan Akun" active="admin.akun.*">

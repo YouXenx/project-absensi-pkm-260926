@@ -334,7 +334,8 @@ class YearlyOperationsTest extends TestCase
 
     public function test_guru_cannot_run_yearly_operations(): void
     {
-        AcademicYear::factory()->active()->create();
+        // A fixed name: a random factory year could be exactly the 2030/2031 checked below.
+        AcademicYear::factory()->active()->create(['year_name' => '2026/2027']);
         $guru = User::factory()->guru()->create();
 
         foreach (['admin.tahun-ajaran.index', 'admin.tahun-ajaran.create', 'admin.kenaikan.index', 'admin.wali-kelas.index', 'admin.wali-kelas.create', 'admin.mapel.index', 'admin.laporan.index'] as $route) {

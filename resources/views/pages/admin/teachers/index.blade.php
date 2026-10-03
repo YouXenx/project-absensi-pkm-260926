@@ -31,7 +31,7 @@
         <th data-data="email">Email</th>
         <th data-data="status">Status</th>
         <th data-data="created_at">Terdaftar</th>
-        <th data-data="actions" data-orderable="false" data-class="text-end" style="width:90px"></th>
+        <th data-data="actions" data-orderable="false" data-class="text-end" class="text-end">Aksi</th>
     </x-data-table>
 </section>
 
@@ -48,14 +48,14 @@
 
     <div class="field">
         <label class="field-label" for="teacher-modal-password">Password <span class="req" data-modal-show="create">*</span></label>
-        <input id="teacher-modal-password" name="password" type="password" autocomplete="new-password" class="input">
-        <div class="field-help" data-modal-show="create">Minimal 8 karakter.</div>
+        <x-password-input id="teacher-modal-password" name="password" autocomplete="new-password" />
+        <div class="field-help" data-modal-show="create">Minimal 8 karakter. Bebas memakai huruf besar, huruf kecil, angka, dan simbol.</div>
         <div class="field-help" data-modal-show="edit">Kosongkan jika tidak ingin mengganti password.</div>
     </div>
 
     <div class="field">
         <label class="field-label" for="teacher-modal-password_confirmation">Konfirmasi Password</label>
-        <input id="teacher-modal-password_confirmation" name="password_confirmation" type="password" autocomplete="new-password" class="input">
+        <x-password-input id="teacher-modal-password_confirmation" name="password_confirmation" autocomplete="new-password" />
     </div>
 
     <div class="field span-2">

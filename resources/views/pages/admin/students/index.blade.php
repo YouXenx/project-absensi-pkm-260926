@@ -39,7 +39,7 @@
         <th data-data="class_name">Kelas</th>
         <th data-data="gender">Jenis Kelamin</th>
         <th data-data="status">Status</th>
-        <th data-data="actions" data-orderable="false" data-class="text-end" style="width:90px"></th>
+        <th data-data="actions" data-orderable="false" data-class="text-end" class="text-end">Aksi</th>
     </x-data-table>
 </section>
 

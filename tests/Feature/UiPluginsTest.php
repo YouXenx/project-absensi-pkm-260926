@@ -153,8 +153,11 @@ class UiPluginsTest extends TestCase
             ->assertSee('data-export-table', false)
             ->assertSee('data-datepicker data-range-start="recap"', false);
 
-        // Pages without these elements do not pull the plugin chunks in.
         $this->actingAs($this->admin)->get(route('admin.kelas.index'))
+            ->assertSee('data-export-title="Data Kelas"', false);
+
+        // Pages without these elements do not pull the plugin chunks in.
+        $this->actingAs($this->admin)->get(route('admin.akun.edit'))
             ->assertDontSee('data-export-title', false)
             ->assertDontSee('data-searchable', false)
             ->assertDontSee('data-datepicker', false);

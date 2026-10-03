@@ -150,8 +150,39 @@
     display: contents;
 }
 
+/* Buttons keep their size: with four of them in a narrow column they used to shrink to 2px-wide dots. */
+
+.data-cell-actions {
+    flex-wrap: nowrap;
+    /* Buttons inside the display:contents forms are not counted when the column is sized; this makes them count. */
+    width: max-content;
+}
+
+.data-table td.text-end .data-cell-actions {
+    margin-left: auto;
+}
+
 .data-cell-actions .btn--icon {
     cursor: pointer;
+    flex: none;
+    padding: 7px;
+}
+
+.data-cell-actions .btn--icon svg {
+    height: 15px;
+    width: 15px;
+}
+
+.data-cell-actions .btn--icon.is-edit {
+    color: var(--primary);
+}
+
+.data-cell-actions .btn--icon.is-delete {
+    color: var(--danger);
+}
+
+.data-table th.text-end {
+    text-align: right;
 }
 
 .data-cell-actions .btn--icon.is-danger:hover {
@@ -1077,4 +1108,162 @@ html .select2-container--default .select2-selection--single .select2-selection__
     .year-step {
         grid-template-columns: 22px 1fr;
     }
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   School logo (x-brand-logo, config/adminator.php). The crest is round, so the white corners of the JPEG are
+   clipped with a circular box in the sidebar and on the login page.
+   --------------------------------------------------------------------------------------------------------------- */
+
+.brand-logo.has-image,
+.auth-brand .logo.has-image,
+.auth-school-logo.has-image {
+    backdrop-filter: none;
+    background: #fff;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: none;
+    flex: none;
+    overflow: hidden;
+}
+
+.brand-logo.has-image,
+.auth-brand .logo.has-image {
+    height: 44px;
+    width: 44px;
+}
+
+.has-image img {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.brand-text {
+    min-width: 0;
+}
+
+.auth-school {
+    align-items: center;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.auth-school-logo {
+    height: 76px;
+    width: 76px;
+}
+
+.auth-school-name {
+    color: var(--t-base);
+    font-family: 'Inter Tight', Inter, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Login panel: school photos instead of Adminator's gradient. Slides are stacked and cross-fade; a dark navy
+   overlay (the logo's colour) keeps the white text readable on bright photos.
+   --------------------------------------------------------------------------------------------------------------- */
+
+.auth-aside.has-slides {
+    background: #1e1b4b;
+}
+
+.auth-aside.has-slides::before,
+.auth-aside.has-slides::after {
+    content: none;
+}
+
+.auth-slides,
+.auth-slide {
+    inset: 0;
+    position: absolute;
+}
+
+.auth-slide {
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.auth-slide.is-active {
+    opacity: 1;
+}
+
+.auth-slides::after {
+    background: linear-gradient(180deg, rgba(23, 21, 64, 0.72) 0%, rgba(23, 21, 64, 0.45) 38%, rgba(23, 21, 64, 0.82) 100%);
+    content: '';
+    inset: 0;
+    position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-slide {
+        transition: none;
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Password input with a show/hide button (x-password-input).
+   --------------------------------------------------------------------------------------------------------------- */
+
+.password-field {
+    position: relative;
+}
+
+.password-field .input {
+    padding-right: 42px;
+}
+
+.password-toggle {
+    align-items: center;
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    color: var(--t-light);
+    cursor: pointer;
+    display: inline-flex;
+    height: 30px;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+}
+
+.password-toggle:hover,
+.password-toggle[aria-pressed='true'] {
+    color: var(--primary);
+}
+
+.password-toggle:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary-soft);
+    outline: 0;
+}
+
+.password-toggle svg {
+    fill: none;
+    height: 17px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    width: 17px;
+}
+
+.password-toggle .icon-hide,
+.password-toggle[aria-pressed='true'] .icon-show {
+    display: none;
+}
+
+.password-toggle[aria-pressed='true'] .icon-hide {
+    display: block;
 }

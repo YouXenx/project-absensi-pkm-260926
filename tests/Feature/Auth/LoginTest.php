@@ -25,7 +25,9 @@ class LoginTest extends TestCase
             ->assertSee('class="auth-shell"', false)
             ->assertSee('action="'.route('login.store').'"', false)
             ->assertSee('name="_token"', false)
-            ->assertSee(asset('adminator/css/style.css'), false);
+            ->assertSee(asset('adminator/css/style.css'), false)
+            ->assertDontSee('adminator/js/', false)
+            ->assertDontSee('fonts.googleapis.com', false);
     }
 
     public function test_home_redirects_guests_to_login(): void

@@ -66,6 +66,29 @@ class TeacherManagementTest extends TestCase
         $this->assertTrue(Hash::check('rahasia123', $teacher->password));
     }
 
+    public function test_password_fields_have_a_show_button_and_accept_any_mix_of_characters(): void
+    {
+        $this->actingAs($this->admin)->get(route('admin.guru.index'))
+            ->assertSee('id="teacher-modal-password" name="password" autocomplete="new-password">', false)
+            ->assertSee('id="teacher-modal-password_confirmation"', false)
+            ->assertSee('data-password-toggle', false);
+
+        // Upper case, lower case, digits, symbols and a space: stored exactly as typed.
+        $password = 'Guru BIG#2026!';
+
+        $this->actingAs($this->admin)
+            ->post(route('admin.guru.store'), ['name' => 'Budi', 'email' => 'budi@absensi.test', 'password' => $password, 'password_confirmation' => $password])
+            ->assertSessionHasNoErrors();
+
+        $teacher = User::firstWhere('email', 'budi@absensi.test');
+        $this->assertTrue(Hash::check($password, $teacher->password));
+        $this->assertFalse(Hash::check(strtolower($password), $teacher->password), 'Passwords stay case-sensitive.');
+
+        auth()->logout();
+        $this->post(route('login.store'), ['email' => 'budi@absensi.test', 'password' => $password]);
+        $this->assertAuthenticatedAs($teacher);
+    }
+
     public function test_guru_account_validation(): void
     {
         User::factory()->guru()->create(['email' => 'dipakai@absensi.test']);

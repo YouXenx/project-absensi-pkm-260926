@@ -11,10 +11,10 @@ class SidebarTest extends TestCase
     use RefreshDatabase;
 
     /** @var list<string> */
-    private const ADMIN_MENU = ['Data Guru', 'Data Kelas', 'Data Siswa', 'Tahun Ajaran', 'Kenaikan Kelas', 'Wali Kelas', 'Mata Pelajaran', 'Jadwal Pelajaran', 'Koreksi Absensi', 'Rekap Absensi', 'Rekap per Mapel', 'Pengaturan Akun'];
+    private const ADMIN_MENU = ['Data Guru', 'Data Kelas', 'Data Siswa', 'Tahun Ajaran', 'Kenaikan Kelas', 'Wali Kelas', 'Mata Pelajaran', 'Koreksi Absensi', 'Rekap Absensi', 'Rekap per Mapel', 'Pengaturan Akun'];
 
     /** @var list<string> */
-    private const GURU_MENU = ['Mapel yang Diampu', 'Absensi Siswa', 'Riwayat Absensi', 'Input Nilai', 'Rekap Absensi Mapel', 'Rekap per Mapel Saya', 'Jadwal Mengajar', 'Profil Saya'];
+    private const GURU_MENU = ['Mapel yang Diampu', 'Absensi Siswa', 'Riwayat Absensi', 'Input Nilai', 'Rekap Absensi Mapel', 'Rekap per Mapel Saya', 'Profil Saya'];
 
     protected function setUp(): void
     {
@@ -31,7 +31,7 @@ class SidebarTest extends TestCase
             ->assertSee('class="d-sidebar"', false)
             ->assertSee(route('admin.dashboard'), false);
 
-        foreach (['admin.guru.index', 'admin.kelas.index', 'admin.siswa.index', 'admin.tahun-ajaran.index', 'admin.kenaikan.index', 'admin.wali-kelas.index', 'admin.mapel.index', 'admin.jadwal.index', 'admin.absensi.index', 'admin.laporan.index', 'admin.akun.edit'] as $route) {
+        foreach (['admin.guru.index', 'admin.kelas.index', 'admin.siswa.index', 'admin.tahun-ajaran.index', 'admin.kenaikan.index', 'admin.wali-kelas.index', 'admin.mapel.index', 'admin.absensi.index', 'admin.laporan.index', 'admin.laporan.mapel', 'admin.akun.edit'] as $route) {
             $response->assertSee('href="'.route($route).'"', false);
         }
 
@@ -53,7 +53,7 @@ class SidebarTest extends TestCase
 
         $response->assertOk();
 
-        foreach (['guru.dashboard', 'guru.mapel.index', 'guru.absensi.index', 'guru.riwayat.index', 'guru.nilai.index', 'guru.rekap.index', 'guru.jadwal.index', 'guru.profil.edit'] as $route) {
+        foreach (['guru.dashboard', 'guru.mapel.index', 'guru.absensi.index', 'guru.riwayat.index', 'guru.nilai.index', 'guru.rekap.index', 'guru.rekap.mapel', 'guru.profil.edit'] as $route) {
             $response->assertSee('href="'.route($route).'"', false);
         }
 
