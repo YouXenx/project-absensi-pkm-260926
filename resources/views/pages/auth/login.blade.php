@@ -92,4 +92,6 @@
         <div class="auth-main-bottom">Lupa password? Hubungi administrator sekolah.</div>
     </main>
 </div>
+
+@include('partials.login-chatbot')
 @endsection
