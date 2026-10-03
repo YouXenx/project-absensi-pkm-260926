@@ -79,6 +79,10 @@ function loadPagePlugins() {
         import('./plugins/export-buttons').then(({ initStaticExportTables }) => initStaticExportTables());
     }
 
+    if (document.querySelector('[data-particles]')) {
+        import('./login-particles').then(({ initLoginParticles }) => initLoginParticles());
+    }
+
     if (document.querySelector('[data-slides]')) {
         import('./login-slides').then(({ initSlides }) => initSlides());
     }

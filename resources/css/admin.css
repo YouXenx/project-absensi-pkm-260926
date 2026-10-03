@@ -1267,3 +1267,26 @@ html .select2-container--default .select2-selection--single .select2-selection__
 .password-toggle[aria-pressed='true'] .icon-hide {
     display: block;
 }
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Login form panel: particles.js behind the form (login-particles.js). The panel keeps its own background colour;
+   the layer never receives clicks, and the mask keeps the particles faint where the form sits.
+   --------------------------------------------------------------------------------------------------------------- */
+
+.auth-main {
+    overflow: hidden;
+    position: relative;
+}
+
+.auth-main > :not(.auth-particles) {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-particles {
+    inset: 0;
+    mask-image: radial-gradient(ellipse 46% 42% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 55%, #000 100%);
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+}

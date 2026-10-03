@@ -37,6 +37,9 @@
     </aside>
 
     <main class="auth-main">
+        {{-- particles.js draws into this box (resources/js/login-particles.js). --}}
+        <div id="login-particles" class="auth-particles" data-particles aria-hidden="true"></div>
+
         <div class="auth-main-top"></div>
 
         <div class="auth-card">

@@ -80,6 +80,13 @@ class BrandingTest extends TestCase
         $this->assertSame(4, preg_match_all('/class="auth-slide( is-active)?"/', $response->getContent()));
     }
 
+    public function test_login_form_panel_has_the_particles_layer(): void
+    {
+        $this->get(route('login'))
+            ->assertOk()
+            ->assertSee('<div id="login-particles" class="auth-particles" data-particles aria-hidden="true"></div>', false);
+    }
+
     public function test_login_panel_falls_back_to_the_plain_panel_without_photos(): void
     {
         config(['adminator.login.slides' => ['images/login/missing.jpg']]);
