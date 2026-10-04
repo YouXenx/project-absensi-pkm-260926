@@ -17,6 +17,8 @@
         "@laravel/multiplex": "^0.4.1"
     },
     "dependencies": {
+        "@tsparticles/engine": "^4.4.0",
+        "@tsparticles/slim": "^4.4.0",
         "chart.js": "^4.5.1",
         "datatables.net": "^3.0.4",
         "datatables.net-buttons": "^4.0.3",
@@ -24,7 +26,6 @@
         "jquery": "^3.7.1",
         "jszip": "^3.10.2",
         "localtunnel": "^2.0.2",
-        "particles.js": "^2.0.0",
         "pdfmake": "^0.2.23",
         "select2": "^4.1.0-rc.0",
         "sweetalert2": "^11.26.25",

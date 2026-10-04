@@ -6,6 +6,10 @@
 
 @section('content')
 <div class="auth-shell">
+    {{-- tsParticles draws into this box (resources/js/login-particles.js). It spans the whole page, so the
+         particles also show around the rounded photo card. --}}
+    <div id="login-particles" class="auth-particles" data-particles aria-hidden="true"></div>
+
     <aside @class(['auth-aside', 'has-slides' => $slides !== []])>
         @if ($slides !== [])
             {{-- School photos behind the panel; resources/js/login-slides.js fades to the next one. --}}
@@ -37,9 +41,6 @@
     </aside>
 
     <main class="auth-main">
-        {{-- particles.js draws into this box (resources/js/login-particles.js). --}}
-        <div id="login-particles" class="auth-particles" data-particles aria-hidden="true"></div>
-
         <div class="auth-main-top"></div>
 
         <div class="auth-card">
@@ -89,7 +90,13 @@
             </form>
         </div>
 
-        <div class="auth-main-bottom">Lupa password? Hubungi administrator sekolah.</div>
+        <div class="auth-main-bottom">
+            Lupa password? Hubungi administrator sekolah.
+            {{-- Shown by resources/js/pwa.js once the browser allows installing the app. --}}
+            <button type="button" class="pwa-install" data-pwa-install hidden>
+                <svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> Pasang aplikasi di perangkat ini
+            </button>
+        </div>
     </main>
 </div>
 

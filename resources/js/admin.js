@@ -2,6 +2,7 @@ import { initDataTables } from './datatable';
 import { Swal, alert, bindConfirmations, confirm, showFlashMessages, toast } from './flash';
 import { bindModalForms } from './modal';
 import { bindPasswordToggles } from './password-toggle';
+import { initPwa } from './pwa';
 import { bindShell } from './shell';
 import { bindLoadingForms, hideLoading, showLoading } from './plugins/loading';
 
@@ -109,6 +110,7 @@ function boot() {
     }
 
     bindShell();
+    initPwa();
     showFlashMessages();
     initDataTables();
     bindModalForms();

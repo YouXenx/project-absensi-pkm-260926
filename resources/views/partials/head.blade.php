@@ -7,6 +7,12 @@
 {{-- Home-screen labels are cut off after a few words, so they get the short name. --}}
 <meta name="apple-mobile-web-app-title" content="{{ config('adminator.brand.short_name') }}">
 
+{{-- PWA: installable on a phone's home screen (manifest route in routes/web.php, service worker public/sw.js). --}}
+<link rel="manifest" href="{{ route('pwa.manifest') }}">
+<meta name="theme-color" content="{{ config('adminator.pwa.theme_color') }}">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
 @if (is_file(public_path(config('adminator.brand.favicon'))))
     <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="48x48">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(config('adminator.brand.favicon')) }}">

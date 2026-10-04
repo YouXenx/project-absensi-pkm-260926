@@ -25,6 +25,26 @@ Route::get('/', function () {
     return redirect()->route($user ? $user->role->dashboardRoute() : 'login');
 })->name('home');
 
+// PWA: the web app manifest and the page the service worker shows without a connection. Both are public and
+// contain no user data.
+Route::get('/manifest.webmanifest', function () {
+    return response()->json([
+        'id' => '/',
+        'name' => config('adminator.brand.name'),
+        'short_name' => config('adminator.brand.short_name'),
+        'description' => 'Aplikasi absensi siswa '.config('adminator.brand.name').'.',
+        'lang' => 'id',
+        'start_url' => '/',
+        'scope' => '/',
+        'display' => 'standalone',
+        'theme_color' => config('adminator.pwa.theme_color'),
+        'background_color' => config('adminator.pwa.background_color'),
+        'icons' => array_map(fn (array $icon): array => [...$icon, 'src' => '/'.$icon['src'], 'type' => 'image/png'], config('adminator.pwa.icons')),
+    ], 200, ['Content-Type' => 'application/manifest+json']);
+})->name('pwa.manifest');
+
+Route::view('/offline', 'pages.offline')->name('pwa.offline');
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');

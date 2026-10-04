@@ -1269,26 +1269,41 @@ html .select2-container--default .select2-selection--single .select2-selection__
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
-   Login form panel: particles.js behind the form (login-particles.js). The panel keeps its own background colour;
-   the layer never receives clicks, and the mask keeps the particles faint where the form sits.
+   Login page: tsParticles behind everything (login-particles.js). The layer spans the whole page and keeps the
+   page's own background colour; it never receives clicks. The photo panel is a rounded card with a margin, so
+   the particles are visible around it as well as behind the form.
    --------------------------------------------------------------------------------------------------------------- */
 
-.auth-main {
+.auth-shell {
     overflow: hidden;
     position: relative;
 }
 
-.auth-main > :not(.auth-particles) {
+.auth-shell > :not(.auth-particles) {
     position: relative;
     z-index: 1;
 }
 
 .auth-particles {
     inset: 0;
-    mask-image: radial-gradient(ellipse 46% 42% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 55%, #000 100%);
+    /* Faint where the form sits (the right half on desktop), full strength elsewhere. */
+    mask-image: radial-gradient(ellipse 23% 42% at 75% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 55%, #000 100%);
     pointer-events: none;
     position: absolute;
     z-index: 0;
+}
+
+.auth-aside {
+    border-radius: 28px;
+    box-shadow: 0 24px 60px -28px rgba(15, 23, 42, 0.45);
+    margin: 20px;
+}
+
+@media (max-width: 900px) {
+    /* The photo card is hidden here and the form is centred. */
+    .auth-particles {
+        mask-image: radial-gradient(ellipse 46% 42% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.45) 55%, #000 100%);
+    }
 }
 
 /* ---------------------------------------------------------------------------------------------------------------
@@ -1580,5 +1595,46 @@ html .select2-container--default .select2-selection--single .select2-selection__
 
     .chatbot-bubble.is-typing span {
         animation: none;
+    }
+}
+
+/* PWA install button on the login page (pwa.js shows it when the app can be installed). */
+
+.pwa-install {
+    align-items: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    font: 600 12px/1 inherit;
+    gap: 7px;
+    margin: 12px auto 0;
+    padding: 9px 14px;
+}
+
+.pwa-install[hidden] {
+    display: none;
+}
+
+.pwa-install:hover {
+    background: var(--primary-soft);
+}
+
+.pwa-install svg {
+    fill: none;
+    height: 14px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+    width: 14px;
+}
+
+@media (max-width: 480px) {
+    /* Keep the footer line and the install button clear of the chatbot button in the corner. */
+    .auth-main-bottom {
+        padding-right: 68px;
     }
 }

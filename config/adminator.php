@@ -23,6 +23,19 @@ return [
         'touch_icon' => 'images/apple-touch-icon.png',
     ],
 
+    // Installable app (PWA): /manifest.webmanifest is built from these values and the brand above.
+    // The icons in public/images/pwa are generated from images/logo-big.jpg.
+    'pwa' => [
+        'theme_color' => '#2563eb',
+        'background_color' => '#f0f4f8',
+        'icons' => [
+            ['src' => 'images/pwa/icon-192.png', 'sizes' => '192x192', 'purpose' => 'any'],
+            ['src' => 'images/pwa/icon-512.png', 'sizes' => '512x512', 'purpose' => 'any'],
+            ['src' => 'images/pwa/icon-maskable-192.png', 'sizes' => '192x192', 'purpose' => 'maskable'],
+            ['src' => 'images/pwa/icon-maskable-512.png', 'sizes' => '512x512', 'purpose' => 'maskable'],
+        ],
+    ],
+
     // Photos behind the left panel of the login page (paths relative to public/), shown one after another.
     'login' => [
         'slides' => [
