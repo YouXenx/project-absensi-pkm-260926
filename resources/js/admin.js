@@ -4,6 +4,7 @@ import { bindModalForms } from './modal';
 import { bindPasswordToggles } from './password-toggle';
 import { initPwa } from './pwa';
 import { bindShell } from './shell';
+import { bindTooltips } from './tooltip';
 import { bindLoadingForms, hideLoading, showLoading } from './plugins/loading';
 
 // Expose the helpers for inline Blade scripts, e.g. window.flash.toast('success', 'Tersimpan').
@@ -110,6 +111,7 @@ function boot() {
     }
 
     bindShell();
+    bindTooltips();
     initPwa();
     showFlashMessages();
     initDataTables();

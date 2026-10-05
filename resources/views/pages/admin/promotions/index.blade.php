@@ -32,7 +32,7 @@
         </form>
 
         <div class="table-scroll" style="margin-top:6px">
-            <table class="table" data-testid="promotion-progress">
+            <table class="table progress-table" data-testid="promotion-progress">
                 <thead>
                     <tr><th>Kelas</th><th class="num">Siswa aktif</th><th class="num">Sudah diproses</th><th class="num">Belum</th><th>Status</th><th></th></tr>
                 </thead>
@@ -85,7 +85,7 @@
                     <div class="field-error">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="field" style="align-self:end">
+            <div class="field form-grid-action">
                 <button class="btn btn--primary" type="submit">Periksa &amp; Preview</button>
             </div>
         </form>

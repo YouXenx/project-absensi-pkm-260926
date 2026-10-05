@@ -10,7 +10,7 @@
     <meta name="theme-color" content="{{ config('adminator.pwa.theme_color') }}">
     <title>Sedang offline - {{ config('app.name') }}</title>
     <style>
-        body { align-items: center; background: #f0f4f8; color: #1e293b; display: flex; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; justify-content: center; margin: 0; min-height: 100vh; padding: 24px; text-align: center; }
+        body { align-items: center; background: #f0f4f8; color: #1e293b; display: flex; font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; justify-content: center; margin: 0; min-height: 100vh; min-height: 100svh; padding: 24px; text-align: center; }
         main { max-width: 360px; }
         img { border-radius: 50%; height: 88px; width: 88px; }
         h1 { font-size: 22px; margin: 20px 0 8px; }
