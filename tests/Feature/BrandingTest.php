@@ -68,16 +68,28 @@ class BrandingTest extends TestCase
             ->assertDontSee('rel="icon"', false);
     }
 
-    public function test_login_panel_cycles_through_the_school_photos_every_three_seconds(): void
+    public function test_login_panel_cycles_through_the_school_photos_every_five_seconds(): void
     {
         $response = $this->get(route('login'))
             ->assertOk()
-            ->assertSee('data-slides data-slides-interval="3000"', false)
+            ->assertSee('data-slides data-slides-interval="5000"', false)
             ->assertSee('class="auth-slide is-active" style="background-image:url(\''.asset('images/login/slide-1.jpg').'\')"', false)
             // Later photos are fetched by the script one step ahead, not with the page.
             ->assertSee('class="auth-slide" data-slide-src="'.asset('images/login/slide-2.jpg').'"', false);
 
         $this->assertSame(4, preg_match_all('/class="auth-slide( is-active)?"/', $response->getContent()));
+    }
+
+    public function test_login_page_offers_a_button_to_pause_the_animations(): void
+    {
+        $this->get(route('login'))
+            ->assertOk()
+            ->assertSee('data-motion-toggle aria-pressed="false" aria-label="Jeda animasi"', false);
+
+        // Nothing moves on the other pages, so the switch is not there.
+        $this->actingAs(User::factory()->admin()->create())
+            ->get(route('admin.dashboard'))
+            ->assertDontSee('data-motion-toggle', false);
     }
 
     public function test_login_form_panel_has_the_particles_layer(): void

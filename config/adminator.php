@@ -44,7 +44,7 @@ return [
             'images/login/slide-3.jpg',
             'images/login/slide-4.jpg',
         ],
-        'slide_interval' => 3000,
+        'slide_interval' => 5000,
     ],
 
 ];

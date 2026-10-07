@@ -2,6 +2,8 @@
  * Login page: fades through the school photos behind the left panel ([data-slides]).
  * The interval comes from config/adminator.php (login.slide_interval). Loaded only on the login page.
  */
+import { isMotionPaused } from './login-motion';
+
 export function initSlides(root = document) {
     const container = root.querySelector('[data-slides]');
     const slides = container ? [...container.children] : [];
@@ -10,7 +12,7 @@ export function initSlides(root = document) {
         return;
     }
 
-    const interval = Number(container.dataset.slidesInterval) || 3000;
+    const interval = Number(container.dataset.slidesInterval) || 5000;
     let current = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
 
     // Photos after the first are not requested with the page: each one is fetched while the previous is on screen.
@@ -26,8 +28,8 @@ export function initSlides(root = document) {
     }
 
     setInterval(() => {
-        // The panel is hidden on small screens; do not cycle (and download) photos nobody sees.
-        if (container.offsetParent === null) {
+        // Paused by the visitor, or the panel is hidden (small screens): do not cycle or download photos.
+        if (isMotionPaused() || container.offsetParent === null) {
             return;
         }
 

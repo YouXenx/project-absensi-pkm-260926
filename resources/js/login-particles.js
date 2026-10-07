@@ -5,6 +5,7 @@
  */
 import { tsParticles } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
+import { isMotionPaused, onMotionChange } from './login-motion';
 
 const DARK_BLUE = '#1e3a8a';
 
@@ -20,7 +21,7 @@ export async function initLoginParticles(root = document) {
 
     await loadSlim(tsParticles);
 
-    await tsParticles.load({
+    const particles = await tsParticles.load({
         id: container.id,
         options: {
             // The canvas fills its own box (.auth-particles), not the whole page, and paints no background.
@@ -46,9 +47,20 @@ export async function initLoginParticles(root = document) {
                     onClick: { enable: false },
                 },
                 modes: {
-                    grab: { distance: 190, links: { opacity: 0.85 } },
+                    grab: { distance: 190, links: { color: DARK_BLUE, opacity: 0.85 } },
                 },
             },
         },
     });
+
+    if (!particles) {
+        return;
+    }
+
+    // Paused from the start: let one frame be drawn first, so the panel shows still particles, not an empty box.
+    if (isMotionPaused()) {
+        requestAnimationFrame(() => requestAnimationFrame(() => particles.pause()));
+    }
+
+    onMotionChange((paused) => (paused ? particles.pause() : particles.play()));
 }

@@ -31,9 +31,14 @@
 
         <div class="auth-aside-body">
             <span class="auth-aside-eyebrow">{{ config('adminator.brand.tagline') }}</span>
+<<<<<<< HEAD
             <!-- <h1>Absensi siswa jadi lebih rapi dan cepat.</h1> -->
             <h1>AUTO UPDATE</h1>
             <p>Satu aplikasi untuk admin sekolah dan guru: kelola data kelas, jadwal, absensi, hingga nilai siswa.</p>
+=======
+            <h1>Absensi siswa jadi lebih rapi dan cepat.</h1>
+            <p>Satu aplikasi untuk admin sekolah dan guru: kelola data kelas dan siswa, isi absensi harian, hingga rekap kehadiran per mata pelajaran.</p>
+>>>>>>> 85c7e59 (update)
         </div>
 
         <div class="auth-aside-footer">
@@ -100,6 +105,12 @@
         </div>
     </main>
 </div>
+
+{{-- Pauses and resumes the slideshow and the particles (resources/js/login-motion.js). --}}
+<button type="button" class="motion-toggle" data-motion-toggle aria-pressed="false" aria-label="Jeda animasi">
+    <svg class="icon-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg>
+    <svg class="icon-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg>
+</button>
 
 @include('partials.login-chatbot')
 @endsection

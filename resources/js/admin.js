@@ -85,6 +85,10 @@ function loadPagePlugins() {
         import('./login-chatbot').then(({ initLoginChatbot }) => initLoginChatbot());
     }
 
+    if (document.querySelector('[data-motion-toggle]')) {
+        import('./login-motion').then(({ initMotionToggle }) => initMotionToggle());
+    }
+
     if (document.querySelector('[data-particles]')) {
         import('./login-particles').then(({ initLoginParticles }) => initLoginParticles());
     }
