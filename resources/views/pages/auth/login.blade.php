@@ -31,14 +31,8 @@
 
         <div class="auth-aside-body">
             <span class="auth-aside-eyebrow">{{ config('adminator.brand.tagline') }}</span>
-<<<<<<< HEAD
-            <!-- <h1>Absensi siswa jadi lebih rapi dan cepat.</h1> -->
-            <h1>AUTO UPDATE</h1>
-            <p>Satu aplikasi untuk admin sekolah dan guru: kelola data kelas, jadwal, absensi, hingga nilai siswa.</p>
-=======
             <h1>Absensi siswa jadi lebih rapi dan cepat.</h1>
             <p>Satu aplikasi untuk admin sekolah dan guru: kelola data kelas dan siswa, isi absensi harian, hingga rekap kehadiran per mata pelajaran.</p>
->>>>>>> 85c7e59 (update)
         </div>
 
         <div class="auth-aside-footer">
