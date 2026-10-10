@@ -71,8 +71,8 @@
         </div>
         <p class="hero-sub" style="margin:0 0 14px">
             Untuk memproses banyak kelas sekaligus. Kolom template: <strong>NIS</strong>, <strong>Nama Siswa</strong>, <strong>Kelas Asal</strong>,
-            dan <strong>Kelas Tujuan / Status</strong> (nama kelas, <code>{{ \App\PromotionImport::RETAIN }}</code>, atau <code>{{ \App\PromotionImport::GRADUATE }}</code>).
-            Isi file akan diperiksa dan ditampilkan sebagai preview dulu; data baru tersimpan setelah Anda konfirmasi.
+            dan <strong>Kelas Tujuan / Status</strong> (nama kelas, Tinggal, atau Lulus).
+            Isi file akan diperiksa dan ditampilkan sebagai preview dahulu lalu data baru tersimpan setelah Anda konfirmasi.
         </p>
         <form method="POST" action="{{ route('admin.kenaikan.impor') }}" enctype="multipart/form-data" class="form-grid" data-loading="Memeriksa isi file Excel…">
             @csrf

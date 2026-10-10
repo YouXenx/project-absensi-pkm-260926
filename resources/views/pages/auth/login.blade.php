@@ -106,5 +106,5 @@
     <svg class="icon-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg>
 </button>
 
-@include('partials.login-chatbot')
+@include('partials.login-faq')
 @endsection

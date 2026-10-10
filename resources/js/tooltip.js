@@ -84,6 +84,13 @@ export function bindTooltips() {
                 return;
             }
 
+            // An open <dialog> is drawn above everything else on the page, so the label has to live inside it.
+            const host = element.closest('dialog[open]') ?? document.body;
+
+            if (bubble.parentNode !== host) {
+                host.appendChild(bubble);
+            }
+
             bubble.textContent = text;
             bubble.hidden = false;
             place(element);

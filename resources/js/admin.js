@@ -81,8 +81,8 @@ function loadPagePlugins() {
         import('./plugins/export-buttons').then(({ initStaticExportTables }) => initStaticExportTables());
     }
 
-    if (document.querySelector('[data-chatbot]')) {
-        import('./login-chatbot').then(({ initLoginChatbot }) => initLoginChatbot());
+    if (document.querySelector('[data-faq]')) {
+        import('./login-faq').then(({ initLoginFaq }) => initLoginFaq());
     }
 
     if (document.querySelector('[data-motion-toggle]')) {

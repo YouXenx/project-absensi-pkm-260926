@@ -72,6 +72,31 @@ async function fetchAllRows(dt, url) {
     return json.data.map((row) => exportedKeys.map((key) => strip(String(row[key] ?? ''))));
 }
 
+/**
+ * pdfmake sizes a table to its content, which left half of the page empty. This gives every column a share of
+ * the full page width in proportion to its longest text (within limits, so one long name cannot starve the rest).
+ */
+function fitPdfToPage(doc) {
+    const block = doc.content.find((item) => item.table);
+
+    if (!block) {
+        return;
+    }
+
+    const { body } = block.table;
+    const weights = body[0].map((_, column) => {
+        const longest = Math.max(...body.map((row) => String(row[column]?.text ?? row[column] ?? '').length));
+
+        return Math.min(Math.max(longest, 8), 36);
+    });
+    const total = weights.reduce((sum, weight) => sum + weight, 0);
+
+    block.table.widths = weights.map((weight) => `${((weight / total) * 100).toFixed(2)}%`);
+    doc.pageMargins = [28, 30, 28, 30];
+    doc.styles.tableHeader = { ...doc.styles.tableHeader, alignment: 'left', fillColor: '#1e3a8a', color: '#ffffff' };
+    doc.styles.title = { ...doc.styles.title, bold: true };
+}
+
 function exportButton(kind, { label, icon, url, title, messageTop, load }) {
     const base = DataTable.ext.buttons[kind];
 
@@ -92,8 +117,10 @@ function exportButton(kind, { label, icon, url, title, messageTop, load }) {
                     title,
                     messageTop,
                     filename: `${title.replace(/[\\/:*?"<>|]+/g, '-')} ${localDate()}`,
-                    orientation: 'landscape',
+                    // Narrow tables read better upright; either way the table spans the page (fitPdfToPage).
+                    orientation: dt.columns(EXPORT_COLUMNS).count() <= 4 ? 'portrait' : 'landscape',
                     pageSize: 'A4',
+                    customize: kind === 'pdfHtml5' ? fitPdfToPage : config.customize,
                     exportOptions: {
                         columns: EXPORT_COLUMNS,
                         customizeData: rows ? (data) => { data.body = rows; } : null,

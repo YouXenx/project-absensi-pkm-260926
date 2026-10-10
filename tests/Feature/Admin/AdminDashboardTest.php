@@ -58,6 +58,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Belum ada kelas.');
     }
 
+    public function test_dashboard_has_no_shortcuts_to_add_teachers_or_students(): void
+    {
+        // Adding records belongs to the master data pages; the dashboard only summarises.
+        $this->actingAs(User::factory()->admin()->create())
+            ->get(route('admin.dashboard'))
+            ->assertOk()
+            ->assertDontSee(route('admin.guru.index').'#tambah', false)
+            ->assertDontSee(route('admin.siswa.index').'#tambah', false);
+    }
+
     public function test_admin_sidebar_links_to_the_crud_pages(): void
     {
         $response = $this->actingAs(User::factory()->admin()->create())->get(route('admin.dashboard'));
