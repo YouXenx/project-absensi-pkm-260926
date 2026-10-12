@@ -11,6 +11,7 @@
         <p class="hero-sub">Kelola daftar kelas. Kelas yang masih memiliki siswa tidak bisa dihapus.</p>
     </div>
     <div class="hero-actions">
+        <x-import-excel type="kelas" />
         <button type="button" class="btn btn--primary" data-modal-open="class-modal" data-modal-hash="tambah">
             <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Kelas
         </button>

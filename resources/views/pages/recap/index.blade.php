@@ -12,7 +12,8 @@
     <div class="hero-text">
         <span class="eyebrow">Laporan</span>
         <h1 class="hero-title">{{ $pageTitle }}</h1>
-        <p class="hero-sub">{{ $isGuru ? 'Hanya menampilkan absensi mata pelajaran yang Anda ampu.' : 'Rekap absensi seluruh kelas dan mata pelajaran.' }} Kelas mengikuti kelas mapel pada tahun ajaran tersebut, jadi histori tetap benar setelah kenaikan kelas.</p>
+        {{-- A guru only sees their own subjects, so "seluruh kelas dan mata pelajaran" would be wrong for them. --}}
+        <p class="hero-sub">Menampilkan rekapitulasi absensi {{ $isGuru ? 'mata pelajaran yang Anda ampu' : 'seluruh kelas dan mata pelajaran' }} berdasarkan kelas yang terdaftar pada tahun ajaran masing-masing, sehingga riwayat absensi tetap akurat setelah siswa naik kelas.</p>
     </div>
 </section>
 
@@ -100,6 +101,7 @@
             @php($recapScope = ($selectedClass?->class_name ?? 'Semua kelas').($selectedSubject ? ' · '.$selectedSubject->subject_name : ''))
             <table class="table recap-table" data-testid="recap"
                 data-export-table data-export-target="#recap-export"
+                data-export-excel-url="{{ route($sheetRoute, request()->query()) }}"
                 data-export-title="{{ $pageTitle }} {{ $selectedYear->year_name }}"
                 data-export-message="Periode {{ $dateFrom->format('d/m/Y') }} – {{ $dateTo->format('d/m/Y') }} · {{ $recapScope }} · {{ $totals['total'] }} catatan"
                 data-empty-text="Tidak ada data absensi untuk filter ini.">

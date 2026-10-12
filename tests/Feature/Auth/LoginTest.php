@@ -26,6 +26,9 @@ class LoginTest extends TestCase
             ->assertSee('action="'.route('login.store').'"', false)
             ->assertSee('name="_token"', false)
             ->assertSee(asset('adminator/css/style.css'), false)
+            // The password field has the show/hide button (x-password-input).
+            ->assertSee('id="password" name="password" placeholder="••••••••" autocomplete="current-password" required', false)
+            ->assertSee('data-password-toggle', false)
             ->assertDontSee('adminator/js/', false)
             ->assertDontSee('fonts.googleapis.com', false);
     }

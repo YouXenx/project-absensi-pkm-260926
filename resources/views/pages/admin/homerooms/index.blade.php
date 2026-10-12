@@ -12,6 +12,7 @@
     </div>
     @if ($activeYear)
         <div class="hero-actions">
+            <x-import-excel type="wali-kelas" />
             <button type="button" class="btn btn--primary" data-modal-open="homeroom-modal" data-modal-create data-modal-url="{{ route('admin.wali-kelas.create') }}" data-modal-hash="tambah">
                 <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tetapkan Wali Kelas
             </button>

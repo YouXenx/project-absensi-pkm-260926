@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AcademicYearController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\HomeroomTeacherController;
+use App\Http\Controllers\Admin\MasterImportController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\PromotionImportController;
 use App\Http\Controllers\Admin\SchoolClassController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Guru\DashboardController as GuruDashboardController;
 use App\Http\Controllers\Guru\SubjectController as GuruSubjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubjectRecapController;
+use App\Imports\MasterImport;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -87,6 +89,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         ->except(['show', 'create'])
         ->parameters(['siswa' => 'student']);
 
+    // Excel import for the master data modules (guru, kelas, siswa, wali-kelas, mapel):
+    // template -> upload -> preview -> confirm.
+    Route::controller(MasterImportController::class)
+        ->prefix('impor/{type}')
+        ->name('impor.')
+        ->whereIn('type', array_keys(MasterImport::TYPES))
+        ->group(function () {
+            Route::get('/template', 'template')->name('template');
+            Route::post('/', 'preview')->name('preview');
+            Route::post('/proses', 'store')->name('store');
+        });
+
     /*
     | Yearly flow: tahun ajaran -> kenaikan kelas -> wali kelas -> mapel.
     | Every step after the first needs an active academic year ("active-year").
@@ -123,6 +137,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     });
 
     Route::get('/laporan', [AttendanceRecapController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/daftar-hadir', [AttendanceRecapController::class, 'sheet'])->name('laporan.daftar-hadir');
     Route::get('/laporan/mapel', [SubjectRecapController::class, 'index'])->name('laporan.mapel');
 
     // Koreksi absensi: any date, edit and delete (AttendancePolicy).
@@ -159,6 +174,7 @@ Route::middleware(['auth', 'guru'])->prefix('guru')->name('guru.')->group(functi
     Route::put('/riwayat-absensi/{attendance}', [AttendanceRecordController::class, 'update'])->name('riwayat.update');
 
     Route::get('/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('rekap.index');
+    Route::get('/rekap-absensi/daftar-hadir', [AttendanceRecapController::class, 'sheet'])->name('rekap.daftar-hadir');
     Route::get('/rekap-mapel', [SubjectRecapController::class, 'index'])->name('rekap.mapel');
 
     // Not built yet.

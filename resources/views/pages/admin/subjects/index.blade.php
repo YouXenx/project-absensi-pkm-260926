@@ -14,6 +14,7 @@
     </div>
     @if ($activeYear)
         <div class="hero-actions">
+            <x-import-excel type="mapel" />
             <button type="button" class="btn btn--primary" data-modal-open="subject-modal" data-modal-url="{{ route('admin.mapel.create') }}" data-modal-create data-modal-hash="tambah">
                 <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Mapel
             </button>

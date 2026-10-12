@@ -78,7 +78,7 @@
             @csrf
             <div class="field">
                 <label class="field-label" for="import-file">File Excel <span class="req">*</span></label>
-                <input id="import-file" name="file" type="file" accept=".xlsx,.xls,.csv" required
+                <input id="import-file" name="file" type="file" accept=".xlsx,.xls,.csv" required data-file-upload
                     @class(['input', 'is-invalid' => $errors->has('file')])>
                 <div class="field-help">Format .xlsx, .xls, atau .csv. Maksimal 2 MB dan {{ number_format(\App\PromotionImport::MAX_ROWS, 0, ',', '.') }} baris.</div>
                 @error('file')

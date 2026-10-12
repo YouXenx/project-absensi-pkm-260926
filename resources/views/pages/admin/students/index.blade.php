@@ -11,6 +11,7 @@
         <p class="hero-sub">Cari berdasarkan NIS, nama, atau kelas. Data dimuat per halaman dari server.</p>
     </div>
     <div class="hero-actions">
+        <x-import-excel type="siswa" />
         <button type="button" class="btn btn--primary" data-modal-open="student-modal" data-modal-hash="tambah">
             <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Siswa
         </button>

@@ -97,8 +97,18 @@ function fitPdfToPage(doc) {
     doc.styles.title = { ...doc.styles.title, bold: true };
 }
 
-function exportButton(kind, { label, icon, url, title, messageTop, load }) {
+function exportButton(kind, { label, icon, url, title, messageTop, load, href = null }) {
     const base = DataTable.ext.buttons[kind];
+
+    // A ready-made file from the server (the "Daftar Hadir" workbook) instead of a file built in the browser.
+    if (href) {
+        return {
+            text: `<svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg><span>${label}</span>`,
+            className: `btn btn--ghost dt-export-btn dt-export-${kind}`,
+            attr: { title: `${label} (${title})` },
+            action: () => window.location.assign(href),
+        };
+    }
 
     return {
         text: `<svg viewBox="0 0 24 24" aria-hidden="true">${icon}</svg><span>${label}</span>`,
@@ -144,13 +154,13 @@ function exportButton(kind, { label, icon, url, title, messageTop, load }) {
  * @param {HTMLElement} target  element the button group is appended to
  * @param {{ title: string, messageTop?: string, url?: string }} options  url: server-side endpoint to export all rows from
  */
-export function attachExportButtons(table, target, { title, messageTop = '', url = null }) {
+export function attachExportButtons(table, target, { title, messageTop = '', url = null, excelUrl = null }) {
     const shared = { url, title, messageTop };
 
     const buttons = new DataTable.Buttons(table, {
         dom: { container: { className: 'dt-export-buttons' }, button: { className: '' } },
         buttons: [
-            exportButton('excelHtml5', { ...shared, label: 'Excel', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13l4 5M12 13l-4 5"/>', load: loadJsZip }),
+            exportButton('excelHtml5', { ...shared, label: 'Excel', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13l4 5M12 13l-4 5"/>', load: loadJsZip, href: excelUrl }),
             exportButton('pdfHtml5', { ...shared, label: 'PDF', icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 18h4"/>', load: loadPdfMake }),
             exportButton('print', { ...shared, label: 'Cetak', icon: '<path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>' }),
         ],
@@ -180,6 +190,8 @@ export function initStaticExportTables(root = document) {
         attachExportButtons(table, target, {
             title: tableElement.dataset.exportTitle,
             messageTop: tableElement.dataset.exportMessage ?? '',
+            // data-export-excel-url: the Excel button downloads this server-made workbook.
+            excelUrl: tableElement.dataset.exportExcelUrl ?? null,
         });
     });
 }

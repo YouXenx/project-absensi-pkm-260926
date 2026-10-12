@@ -23,6 +23,13 @@ return [
         'touch_icon' => 'images/apple-touch-icon.png',
     ],
 
+    // Excel export of the attendance recap in the school's "Daftar Hadir Siswa" layout
+    // (App\Exports\AttendanceSheetExport): the second title line and the logo (png or jpg, relative to public/).
+    'attendance_sheet' => [
+        'heading' => 'SMA Bina Indonesia Gemilang Boarding School',
+        'logo' => 'images/pwa/icon-192.png',
+    ],
+
     // Installable app (PWA): /manifest.webmanifest is built from these values and the brand above.
     // The icons in public/images/pwa are generated from images/logo-big.jpg.
     'pwa' => [

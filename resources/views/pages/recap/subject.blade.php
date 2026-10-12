@@ -99,6 +99,9 @@
         <div class="table-scroll">
             <table class="table recap-table" data-testid="subject-recap"
                 data-export-table data-export-target="#subject-recap-export"
+                @if ($selectedSubject)
+                    data-export-excel-url="{{ route($isGuru ? 'guru.rekap.daftar-hadir' : 'admin.laporan.daftar-hadir', ['academic_year_id' => $selectedYear->academic_year_id, 'subject_id' => $selectedSubject->subject_id, 'semester' => 'custom', 'date_from' => $dateFrom->toDateString(), 'date_to' => $dateTo->toDateString()]) }}"
+                @endif
                 data-export-title="Rekap {{ $selectedSubject?->subject_name ?? 'Mapel' }} {{ $selectedSubject?->schoolClass->class_name }}"
                 data-export-message="{{ $selectedYear->year_name }} · {{ $dateFrom->format('d/m/Y') }} – {{ $dateTo->format('d/m/Y') }} · {{ $meetings }} pertemuan"
                 data-empty-text="Belum ada absensi untuk mapel ini pada periode tersebut.">

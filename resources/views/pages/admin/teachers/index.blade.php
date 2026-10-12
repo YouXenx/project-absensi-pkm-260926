@@ -11,6 +11,7 @@
         <p class="hero-sub">Tambah, edit, atau nonaktifkan akun guru. Guru yang dinonaktifkan tidak bisa login dan langsung keluar dari sesi aktifnya.</p>
     </div>
     <div class="hero-actions">
+        <x-import-excel type="guru" />
         <button type="button" class="btn btn--primary" data-modal-open="teacher-modal" data-modal-hash="tambah">
             <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Tambah Guru
         </button>

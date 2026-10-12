@@ -71,8 +71,8 @@
                     <label class="field-label" for="password">Password</label>
                     <div class="input-icon">
                         <span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-                        <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required
-                            @class(['input', 'is-invalid' => $errors->has('password')])>
+                        <x-password-input id="password" name="password" placeholder="••••••••" autocomplete="current-password" required
+                            :class="$errors->has('password') ? 'is-invalid' : ''" />
                     </div>
                     @error('password')
                         <div class="field-error">{{ $message }}</div>

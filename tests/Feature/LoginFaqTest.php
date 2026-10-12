@@ -26,8 +26,8 @@ class LoginFaqTest extends TestCase
         $response = $this->get(route('login'))
             ->assertOk()
             ->assertSee('data-faq-open', false)
-            ->assertSee('<dialog id="login-faq" class="faq-modal" data-faq aria-labelledby="login-faq-title">', false)
-            ->assertSee('<h2 class="faq-title" id="login-faq-title">FAQ</h2>', false)
+            ->assertSee('<dialog id="login-faq" class="app-dialog" data-faq aria-labelledby="login-faq-title">', false)
+            ->assertSee('<h2 class="app-dialog-title" id="login-faq-title">FAQ</h2>', false)
             ->assertSeeInOrder(['Cara login', 'Dari mana saya mendapat akun?', 'Apa fungsi &quot;Ingat saya&quot;?', 'Setelah login, ke mana?', 'Cara keluar (logout)'], false)
             ->assertSee('Tekan tombol Masuk.')
             // It is a tutorial, not a troubleshooting list.
@@ -64,7 +64,7 @@ class LoginFaqTest extends TestCase
     {
         config(['faq.contact.whatsapp' => null, 'faq.contact.email' => '']);
 
-        $response = $this->get(route('login'))->assertOk()->assertDontSee('wa.me', false)->assertDontSee('faq-foot', false);
+        $response = $this->get(route('login'))->assertOk()->assertDontSee('wa.me', false)->assertDontSee('app-dialog-foot', false);
 
         $this->assertSame(['whatsapp' => null, 'email' => null], $response->viewData('faq')['contact']);
     }

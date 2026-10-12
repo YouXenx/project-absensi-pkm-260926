@@ -1,4 +1,5 @@
 import { initDataTables } from './datatable';
+import { bindDialogs } from './dialog';
 import { Swal, alert, bindConfirmations, confirm, showFlashMessages, toast } from './flash';
 import { bindModalForms } from './modal';
 import { bindPasswordToggles } from './password-toggle';
@@ -77,6 +78,10 @@ function loadPagePlugins() {
         import('./plugins/datepicker').then(({ initDatepickers }) => initDatepickers());
     }
 
+    if (document.querySelector('input[type="file"][data-file-upload]')) {
+        import('./plugins/file-upload').then(({ initFileUploads }) => initFileUploads());
+    }
+
     if (document.querySelector('table[data-export-table]')) {
         import('./plugins/export-buttons').then(({ initStaticExportTables }) => initStaticExportTables());
     }
@@ -115,6 +120,7 @@ function boot() {
     }
 
     bindShell();
+    bindDialogs();
     bindTooltips();
     initPwa();
     showFlashMessages();

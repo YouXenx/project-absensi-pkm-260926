@@ -15,7 +15,7 @@
         <h1 class="hero-title">{{ $pageTitle }}</h1>
         <p class="hero-sub">
             @if ($isAdmin)
-                Semua catatan absensi. Admin dapat mengoreksi atau menghapus absensi tanggal berapa pun.
+                Menampilkan seluruh catatan absensi, dengan akses admin untuk mengoreksi atau menghapus data absensi pada tanggal tertentu sesuai kebutuhan.
             @else
                 Absensi mata pelajaran yang Anda ampu per tanggal. Hanya absensi hari ini yang bisa diubah; tanggal lampau dikoreksi oleh admin.
             @endif
